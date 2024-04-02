@@ -1,0 +1,222 @@
+
+/* CSS RESET */
+
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Prevent font size inflation */
+html {
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+}
+
+/* Remove default margin in favour of better control in authored CSS */
+body, h1, h2, h3, h4, p,
+figure, blockquote, dl, dd {
+  margin: 0;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+:is(ul, ol) {
+  list-style: none;
+}
+
+/* Set shorter line heights on headings and interactive elements */
+h1, h2, h3, h4,
+button, input, label {
+  line-height: 1.1;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  text-wrap: balance;
+}
+
+/* Avoid orphans on paragraphs */
+p {
+    text-wrap: pretty;
+}
+
+/* A elements that don't have a class get default styles */
+a {
+  color: currentColor;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input, button,
+textarea, select {
+  font: inherit;
+}
+
+/* Make sure textareas without a rows attribute are not tiny */
+textarea:not([rows]) {
+  min-height: 10em;
+}
+
+/* Anything that has been anchored to should have extra scroll margin */
+:target {
+  scroll-margin-block: 5ex;
+}
+
+@font-face {
+    font-family: 'Work Sans';
+    src: url('assets/fonts/static/WorkSans-Regular.woff2') format('woff2');
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: 'Work Sans';
+    src: url('assets/fonts/static/WorkSans-SemiBold.woff2') format('woff2');
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: 'Work Sans';
+    src: url('assets/fonts/static/WorkSans-Bold.woff2') format('woff2');
+    font-weight: 700;
+}
+
+/* CUSTOM PROPERTIES */
+
+/* COLORS */
+
+:root {
+    --clr-white: hsl(0, 0%, 100%);
+    --clr-light-pink: hsl(275, 100%, 97%);
+    --clr-grayish-purple: hsl(292, 16%, 49%);
+    --clr-purple: hsl(281, 82%, 54%);
+    --clr-dark-purple: hsl(292, 42%, 14%);
+
+    /* Typography */
+    --ff-work-sans: 'Work Sans', sans-serif;
+    --fw-400: 400;
+    --fw-600: 600;
+    --fw-700: 700;
+}
+
+/* UTILITIES */
+
+.visually-hidden {
+    clip-path: inset(50%);
+    position: absolute;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 1px;
+    height: 1px;
+}
+
+.flow {
+    --flow-space: 1.5em;
+}
+
+.flow > * + * {
+    margin-block-start: var(--flow-space, 1em);
+}
+
+/* COMPONENTS */
+
+
+
+.icon-minus {
+  display: none;
+}
+
+.disclosure-btn {
+  text-wrap: balance;
+  border: none;
+  background-color: transparent;
+  font-size: 1.2rem;
+  font-weight: var(--fw-700);
+  width: 100%;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  align-items: center;
+
+  &:hover {
+    cursor: pointer;
+    color: var(--clr-purple);
+  }
+
+  &[aria-expanded="false"] {
+    + .answer {
+      display: none;
+    }
+    .icon-plus {
+      display: block;
+    }
+    .icon-minus {
+      display: none;
+    }
+  }
+
+  &[aria-expanded="true"] {
+    + .answer {
+      display: block;
+    }
+    .icon-plus {
+      display: none;
+    }
+    .icon-minus {
+      display: block;
+    }
+  }
+}
+
+
+
+/* GENERAL STYLING */
+
+body {
+    background-color: var(--clr-light-pink);
+    color: var(--clr-dark-purple);
+    font-family: var(--ff-work-sans);
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100svh;
+    padding-block-end: 3rem;
+}
+
+.card {
+    background-color: var(--clr-white);
+    max-width: 50rem;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, .2);
+    margin: -12% 2rem 0 2rem;
+}
+
+.card-header {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.answer {
+  line-height: 1.4;
+  color: var(--clr-grayish-purple);
+  max-width: 60ch;
+}
+
+hr {
+  border-color: rgb(from var(--clr-light-pink) r g b / 25%);
+}
